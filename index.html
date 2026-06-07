@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商務泰語輕鬆開口說 · 學習筆記</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+Thai:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ef;
+    --surface: #ffffff;
+    --surface2: #f0ece4;
+    --border: #e2ddd4;
+    --accent: #c4622d;
+    --accent2: #2d6b8c;
+    --text: #2a2520;
+    --text-muted: #7a7068;
+    --thai: #1a4a6b;
+    --phonetic: #b85020;
+    --tag-bg: #e8f4e8;
+    --tag-text: #2d6b3a;
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(42,37,32,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--text);
+    color: #f7f4ef;
+    padding: 28px 32px 22px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  }
+  header .logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+  header .logo span { color: var(--accent); }
+  header .subtitle {
+    font-size: 0.78rem;
+    color: #b8b0a4;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── TABS ── */
+  .tabs-bar {
+    background: var(--surface);
+    border-bottom: 1.5px solid var(--border);
+    position: sticky;
+    top: 74px;
+    z-index: 90;
+  }
+  .tabs {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 20px;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    border: none;
+    background: none;
+    padding: 14px 20px 12px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1.5px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+  .tab-num {
+    display: inline-block;
+    background: var(--surface2);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.72rem;
+    margin-right: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .tab-btn.active .tab-num { background: #fde8df; color: var(--accent); }
+
+  /* ── TAB PANELS ── */
+  .tab-panel { display: none; padding: 32px 0 60px; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── VOCAB TABLE ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .vocab-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .vocab-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+  .vocab-card .cn { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; }
+  .vocab-card .th {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1.25rem;
+    color: var(--thai);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .vocab-card .ph {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--phonetic);
+    margin-top: 3px;
+  }
+
+  /* ── NUMBER TABLE ── */
+  .num-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+  }
+  .num-table th {
+    background: var(--surface2);
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border-bottom: 1.5px solid var(--border);
+  }
+  .num-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .num-table tr:last-child td { border-bottom: none; }
+  .num-table tr:hover td { background: #faf8f5; }
+  .num-table .num { font-weight: 700; font-size: 1rem; }
+  .num-table .th-num {
+    font-family: 'Noto Sans Thai', sans-serif;
+    color: var(--thai);
+    font-size: 1.05rem;
+  }
+  .num-table .th-word {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1.05rem;
+    color: var(--thai);
+    font-weight: 600;
+  }
+  .num-table .ph {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--phonetic);
+  }
+
+  /* ── DIALOGUE CARD ── */
+  .dialogue-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .dialogue-block .context {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .dialogue-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: start;
+  }
+  .dialogue-row:last-child { margin-bottom: 0; }
+  .dialogue-row .role {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding-top: 3px;
+    color: var(--text-muted);
+  }
+  .dialogue-row .speech .cn-line { font-size: 0.85rem; margin-bottom: 2px; }
+  .dialogue-row .speech .th-line {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1rem;
+    color: var(--thai);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .dialogue-row .speech .ph-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--phonetic);
+  }
+
+  /* ── PHRASE CARDS ── */
+  .phrase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .phrase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    transition: box-shadow 0.15s;
+  }
+  .phrase-card:hover { box-shadow: var(--shadow); }
+  .phrase-card .cn { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px; }
+  .phrase-card .th {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1.15rem;
+    color: var(--thai);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .phrase-card .ph {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--phonetic);
+    margin-top: 5px;
+  }
+
+  /* ── COUNTRY GRID ── */
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .country-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .country-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+  .country-card .cn { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; }
+  .country-card .th {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1.05rem;
+    color: var(--thai);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .country-card .th span { color: var(--accent2); }
+  .country-card .ph {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--phonetic);
+    margin-top: 4px;
+  }
+
+  /* ── CONSONANT TABLE ── */
+  .consonant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .consonant-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .consonant-card .th-char {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1.5rem;
+    color: var(--thai);
+    font-weight: 700;
+    min-width: 32px;
+    text-align: center;
+  }
+  .consonant-card .info .sound {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--phonetic);
+  }
+  .consonant-card .info .example {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  /* ── TONE BOX ── */
+  .tone-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .tone-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .tone-card .tone-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .tone-card .tone-name-th {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 0.85rem;
+    color: var(--thai);
+  }
+  .tone-card .tone-name-cn { font-size: 0.78rem; color: var(--text-muted); }
+  .tone-card .tone-ex {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1.3rem;
+    color: var(--thai);
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  .tone-card .tone-ex-ph {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--phonetic);
+  }
+
+  /* ── TIME TABLE ── */
+  .time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .time-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .time-card .hr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 32px;
+    text-align: center;
+  }
+  .time-card .info .th {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1rem;
+    color: var(--thai);
+    font-weight: 600;
+  }
+  .time-card .info .ph {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--phonetic);
+  }
+
+  /* ── GRAMMAR NOTE ── */
+  .grammar-note {
+    background: #fdf6ec;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+  }
+  .grammar-note strong { color: var(--accent); }
+
+  /* ── INTRO ── */
+  .unit-intro {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .unit-badge {
+    background: var(--text);
+    color: #f7f4ef;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+  .unit-intro p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── TTS FEEDBACK ── */
+  .speakable {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .speakable::after {
+    content: '🔊';
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .speakable:hover::after { opacity: 0.45; }
+  .speakable.speaking {
+    border-color: var(--accent2) !important;
+    box-shadow: 0 0 0 2px rgba(45,107,140,0.18) !important;
+  }
+  .speakable.speaking::after { opacity: 1; animation: pulse-icon 0.6s ease-in-out infinite alternate; }
+  @keyframes pulse-icon { from { transform: scale(1); } to { transform: scale(1.3); } }
+  .speakable.speaking .th,
+  .speakable.speaking .th-line,
+  .speakable.speaking .th-word,
+  .speakable.speaking .th-char,
+  .speakable.speaking .tone-ex { color: var(--accent2) !important; }
+
+  /* TTS status bar */
+  #tts-bar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--text);
+    color: #f7f4ef;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: nowrap;
+    max-width: 90vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  #tts-bar.visible { transform: translateX(-50%) translateY(0); }
+  #tts-bar .wave {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  #tts-bar .wave span {
+    display: block;
+    width: 3px;
+    height: 14px;
+    background: var(--accent);
+    border-radius: 2px;
+    animation: wave-bar 0.8s ease-in-out infinite;
+  }
+  #tts-bar .wave span:nth-child(2) { animation-delay: 0.15s; }
+  #tts-bar .wave span:nth-child(3) { animation-delay: 0.3s; }
+  #tts-bar .wave span:nth-child(4) { animation-delay: 0.45s; }
+  @keyframes wave-bar {
+    0%,100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+  }
+  #tts-bar .tts-text {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 0.9rem;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* no-tts warning */
+  .no-tts-warn {
+    background: #fff8e6;
+    border: 1px solid #f0d070;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    color: #7a6020;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    header { padding: 18px 16px 14px; }
+    .container { padding: 0 12px; }
+    .tab-btn { padding: 12px 14px 10px; font-size: 0.8rem; }
+    .tone-grid { grid-template-columns: repeat(3, 1fr); }
+    .dialogue-row { grid-template-columns: 60px 1fr; }
+    .num-table { font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TTS status bar -->
+<div id="tts-bar">
+  <div class="wave"><span></span><span></span><span></span><span></span></div>
+  <div class="tts-text" id="tts-text">播放中…</div>
+</div>
+
+<header>
+  <div>
+    <div class="logo">商務泰語 <span>輕鬆開口說</span></div>
+    <div class="subtitle">課程學習筆記 · TibaMe × EverThai Studio</div>
+  </div>
+</header>
+
+<div class="tabs-bar">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('u1')"><span class="tab-num">U1</span>基礎入門</button>
+    <button class="tab-btn" onclick="showTab('u2')"><span class="tab-num">U2</span>文字系統</button>
+    <button class="tab-btn" onclick="showTab('u3')"><span class="tab-num">U3</span>日常會話</button>
+    <button class="tab-btn" onclick="showTab('u4')"><span class="tab-num">U4</span>商務泰語</button>
+  </div>
+</div>
+
+<!-- ════════════════ UNIT 1 ════════════════ -->
+<div id="u1" class="tab-panel active">
+<div class="container">
+
+  <div class="unit-intro">
+    <div class="unit-badge">UNIT 1</div>
+    <p>基礎數字說法 · 常見國家名稱 · 打招呼常用語與禮貌語尾詞</p>
+  </div>
+
+  <div class="no-tts-warn" id="no-tts-warn">⚠️ 您的瀏覽器不支援泰語語音合成，或尚未安裝泰語語音包。建議使用 Chrome 並確認系統已安裝 Thai TTS。</div>
+
+  <div class="section-label">基礎數字 0–10</div>
+  <table class="num-table">
+    <thead><tr><th>數字</th><th>泰文數字</th><th>泰文</th><th>拼音</th></tr></thead>
+    <tbody>
+      <tr><td class="num">0</td><td class="th-num">๐</td><td class="th-word">ศูนย์</td><td class="ph">su:n5</td></tr>
+      <tr><td class="num">1</td><td class="th-num">๑</td><td class="th-word">หนึ่ง</td><td class="ph">nueng2</td></tr>
+      <tr><td class="num">2</td><td class="th-num">๒</td><td class="th-word">สอง</td><td class="ph">sor:ng5</td></tr>
+      <tr><td class="num">3</td><td class="th-num">๓</td><td class="th-word">สาม</td><td class="ph">sa:m5</td></tr>
+      <tr><td class="num">4</td><td class="th-num">๔</td><td class="th-word">สี่</td><td class="ph">si:2</td></tr>
+      <tr><td class="num">5</td><td class="th-num">๕</td><td class="th-word">ห้า</td><td class="ph">ha:3</td></tr>
+      <tr><td class="num">6</td><td class="th-num">๖</td><td class="th-word">หก</td><td class="ph">hok2</td></tr>
+      <tr><td class="num">7</td><td class="th-num">๗</td><td class="th-word">เจ็ด</td><td class="ph">jet2</td></tr>
+      <tr><td class="num">8</td><td class="th-num">๘</td><td class="th-word">แปด</td><td class="ph">pae:t2</td></tr>
+      <tr><td class="num">9</td><td class="th-num">๙</td><td class="th-word">เก้า</td><td class="ph">kao3</td></tr>
+      <tr><td class="num">10</td><td class="th-num">๑๐</td><td class="th-word">สิบ</td><td class="ph">sip2</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-label">十位數與特殊規則</div>
+  <div class="grammar-note">
+    <strong>規則：</strong>「1」在十位以後變成 <span style="font-family:'Noto Sans Thai',sans-serif;color:#1a4a6b">เอ็ด</span>（et2）；「20」起頭用 <span style="font-family:'Noto Sans Thai',sans-serif;color:#1a4a6b">ยี่สิบ</span>（yi:3 sip2），不說 สองสิบ。
+  </div>
+  <table class="num-table">
+    <thead><tr><th>數字</th><th>泰文</th><th>拼音</th></tr></thead>
+    <tbody>
+      <tr><td class="num">11</td><td class="th-word">สิบเอ็ด</td><td class="ph">sip2 et2</td></tr>
+      <tr><td class="num">12</td><td class="th-word">สิบสอง</td><td class="ph">sip2 sor:ng5</td></tr>
+      <tr><td class="num">20</td><td class="th-word">ยี่สิบ</td><td class="ph">yi:3 sip2</td></tr>
+      <tr><td class="num">21</td><td class="th-word">ยี่สิบเอ็ด</td><td class="ph">yi:3 sip2 et2</td></tr>
+      <tr><td class="num">30</td><td class="th-word">สามสิบ</td><td class="ph">sa:m5 sip2</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-label">百位數以上</div>
+  <table class="num-table">
+    <thead><tr><th>中文</th><th>泰文</th><th>拼音</th><th>例</th></tr></thead>
+    <tbody>
+      <tr><td>百</td><td class="th-word">ร้อย</td><td class="ph">ror:i4</td><td>100 = หนึ่งร้อย nueng2 ror:i4</td></tr>
+      <tr><td>千</td><td class="th-word">พัน</td><td class="ph">phan1</td><td></td></tr>
+      <tr><td>萬</td><td class="th-word">หมื่น</td><td class="ph">mue:n2</td><td></td></tr>
+      <tr><td>十萬</td><td class="th-word">แสน</td><td class="ph">sae:n5</td><td></td></tr>
+      <tr><td>百萬</td><td class="th-word">ล้าน</td><td class="ph">la:n4</td><td></td></tr>
+      <tr><td>千萬</td><td class="th-word">สิบล้าน</td><td class="ph">sip2 la:n4</td><td></td></tr>
+      <tr><td>億</td><td class="th-word">ร้อยล้าน</td><td class="ph">ror:i4 la:n4</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-label">常見國家</div>
+  <div class="grammar-note">
+    <strong>文法：</strong>國家 = <span style="font-family:'Noto Sans Thai',sans-serif;color:#1a4a6b">ประเทศ</span>（名詞）+ 國籍形容詞。例：泰國 = ประเทศ + ไทย
+  </div>
+  <div class="country-grid" id="countries"></div>
+
+  <div class="section-label">打招呼詞彙</div>
+  <div class="vocab-grid" id="greet-vocab"></div>
+
+  <div class="section-label">禮貌語尾詞（句尾敬詞）</div>
+  <table class="num-table">
+    <thead><tr><th>性別</th><th>「我」</th><th>肯定句尾</th><th>疑問句尾</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>女性</strong></td>
+        <td class="th-word">ฉัน <span class="ph" style="display:block">chan5</span></td>
+        <td class="th-word">ค่ะ <span class="ph" style="display:block">kha3</span></td>
+        <td class="th-word">คะ <span class="ph" style="display:block">kha4</span></td>
+      </tr>
+      <tr>
+        <td><strong>男性</strong></td>
+        <td class="th-word">ผม <span class="ph" style="display:block">phom5</span></td>
+        <td class="th-word">ครับ <span class="ph" style="display:block">khrap4</span></td>
+        <td class="th-word">ครับ <span class="ph" style="display:block">khrap4</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-label">常用句型</div>
+  <div class="phrase-grid" id="greet-phrases"></div>
+
+</div>
+</div>
+
+<!-- ════════════════ UNIT 2 ════════════════ -->
+<div id="u2" class="tab-panel">
+<div class="container">
+
+  <div class="unit-intro">
+    <div class="unit-badge">UNIT 2</div>
+    <p>泰語母音系統 · 子音（中/高/低音組）· 聲調規則 · 拼讀練習</p>
+  </div>
+
+  <div class="section-label">母音系統（18組）</div>
+  <div class="grammar-note">
+    泰語有 <strong>18 組母音</strong>，分長短音。拼音中 <strong>: </strong> 表長音，數字 1–5 表聲調。
+  </div>
+  <div class="vocab-grid" id="vowels"></div>
+
+  <div class="section-label">子音概覽（44個，3個音組）</div>
+  <div class="grammar-note">
+    <strong>中音組</strong> 9 個 · <strong>高音組</strong> 11 個 · <strong>低音組</strong> 24 個。每個子音有「字頭音」和「字尾音」兩種讀法。
+  </div>
+  <div class="section-label" style="margin-top:8px">中音組（9個）</div>
+  <div class="consonant-grid" id="mid-cons"></div>
+  <div class="section-label">高音組（11個）</div>
+  <div class="consonant-grid" id="high-cons"></div>
+  <div class="section-label">低音組（部分常用）</div>
+  <div class="consonant-grid" id="low-cons"></div>
+
+  <div class="section-label">五聲調</div>
+  <div class="tone-grid" id="tones"></div>
+  <div class="grammar-note">
+    <strong>聲調符號：</strong> ่ 低調（mai ek） · ้ 降調（mai tho） · ๊ 高調（mai tri） · ๋ 上調（mai jattawa）
+  </div>
+
+  <div class="section-label">字尾音（韻尾）</div>
+  <div class="vocab-grid" id="finals"></div>
+
+</div>
+</div>
+
+<!-- ════════════════ UNIT 3 ════════════════ -->
+<div id="u3" class="tab-panel">
+<div class="container">
+
+  <div class="unit-intro">
+    <div class="unit-badge">UNIT 3</div>
+    <p>自我介紹 · 詢問工作 · 時間說法 · 星期月份 · 季節天氣 · 餐廳點餐</p>
+  </div>
+
+  <div class="section-label">自我介紹對話</div>
+  <div id="intro-dialogues"></div>
+
+  <div class="section-label">工作相關對話</div>
+  <div id="work-dialogues"></div>
+
+  <div class="section-label">時間說法</div>
+  <div class="grammar-note">
+    <strong>午夜–早5點：</strong> ตี + 數字 ｜ <strong>早6–11點：</strong> 數字 + โมงเช้า ｜ <strong>下午1–4點：</strong> บ่าย + 數字 + โมง ｜ <strong>晚7–11點：</strong> 數字 + ทุ่ม
+  </div>
+  <div class="time-grid" id="time-cards"></div>
+
+  <div class="section-label">時段詞</div>
+  <div class="vocab-grid" id="time-period"></div>
+
+  <div class="section-label">星期</div>
+  <div class="vocab-grid" id="weekdays"></div>
+
+  <div class="section-label">月份</div>
+  <div class="vocab-grid" id="months"></div>
+
+  <div class="section-label">季節與天氣</div>
+  <div class="vocab-grid" id="seasons"></div>
+
+  <div class="section-label">常見泰式料理</div>
+  <div class="vocab-grid" id="food"></div>
+
+  <div class="section-label">餐廳常用語</div>
+  <div class="phrase-grid" id="restaurant"></div>
+
+</div>
+</div>
+
+<!-- ════════════════ UNIT 4 ════════════════ -->
+<div id="u4" class="tab-panel">
+<div class="container">
+
+  <div class="unit-intro">
+    <div class="unit-badge">UNIT 4</div>
+    <p>辦公室用品 · 公司職位 · 部門名稱 · 商務對話 · 電話用語</p>
+  </div>
+
+  <div class="section-label">辦公室用品</div>
+  <div class="vocab-grid" id="office-items"></div>
+
+  <div class="section-label">公司職位</div>
+  <div class="vocab-grid" id="positions"></div>
+
+  <div class="section-label">部門名稱</div>
+  <div class="vocab-grid" id="departments"></div>
+
+  <div class="section-label">商務詞彙</div>
+  <div class="vocab-grid" id="biz-vocab"></div>
+
+  <div class="section-label">商務對話</div>
+  <div id="biz-dialogues"></div>
+
+  <div class="section-label">電話常用語</div>
+  <div class="phrase-grid" id="phone-phrases"></div>
+
+</div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────
+const data = {
+
+  countries: [
+    {cn:'泰國', th:'ประเทศ<span>ไทย</span>', ph:'pra2 the:t3 thai1'},
+    {cn:'臺灣', th:'ประเทศ<span>ไต้หวัน</span>', ph:'pra2 the:t3 tai3 wan5'},
+    {cn:'日本', th:'ประเทศ<span>ญี่ปุ่น</span>', ph:'pra2 the:t3 yi:3 pun2'},
+    {cn:'韓國', th:'ประเทศ<span>เกาหลี</span>', ph:'pra2 the:t3 kao1 li:5'},
+    {cn:'中國', th:'ประเทศ<span>จีน</span>', ph:'pra2 the:t3 ji:n1'},
+    {cn:'越南', th:'ประเทศ<span>เวียดนาม</span>', ph:'pra2 the:t3 wi:at3 na:m1'},
+    {cn:'寮國', th:'ประเทศ<span>ลาว</span>', ph:'pra2 the:t3 la:o1'},
+    {cn:'柬埔寨', th:'ประเทศ<span>กัมพูชา</span>', ph:'pra2 the:t3 kam1 phu:1 cha:1'},
+    {cn:'緬甸', th:'ประเทศ<span>พม่า</span>', ph:'pra2 the:t3 pha4 ma:3'},
+    {cn:'新加坡', th:'ประเทศ<span>สิงคโปร์</span>', ph:'pra2 the:t3 sing5 kha4 po:1'},
+    {cn:'馬來西亞', th:'ประเทศ<span>มาเลเซีย</span>', ph:'pra2 the:t3 ma:1 le:1 si:a1'},
+    {cn:'印尼', th:'ประเทศ<span>อินโดนีเซีย</span>', ph:'pra2 the:t3 in1 do1 ni:1 si:a1'},
+    {cn:'菲律賓', th:'ประเทศ<span>ฟิลิปปินส์</span>', ph:'pra2 the:t3 fi4 lip4 pin1'},
+    {cn:'汶萊', th:'ประเทศ<span>บรูไน</span>', ph:'pra2 the:t3 bru:1 nai1'},
+    {cn:'美國', th:'ประเทศ<span>อเมริกา</span>', ph:'pra2 the:t3 a2 me:1 ri4 ka:1'},
+    {cn:'英國', th:'ประเทศ<span>อังกฤษ</span>', ph:'pra2 the:t3 ang1 kruet2'},
+    {cn:'德國', th:'ประเทศ<span>เยอรมัน</span>', ph:'pra2 the:t3 yer:1 ra4 man1'},
+    {cn:'法國', th:'ประเทศ<span>ฝรั่งเศส</span>', ph:'pra2 the:t3 fa2 rang2 se:t2'},
+  ],
+
+  greetVocab: [
+    {cn:'你好', th:'สวัสดี', ph:'sa2 wat2 di:1'},
+    {cn:'謝謝', th:'ขอบคุณ', ph:'khor:p2 khun1'},
+    {cn:'對不起', th:'ขอโทษ', ph:'khor:5 tho:t3'},
+    {cn:'沒關係', th:'ไม่เป็นไร', ph:'mai3 pen1 rai1'},
+    {cn:'不客氣', th:'ไม่ต้องเกรงใจ', ph:'mai3 tor:ng3 kre:ng1 jai1'},
+    {cn:'不用擔心', th:'ไม่ต้องห่วง', ph:'mai3 tor:ng3 hu:ang2'},
+    {cn:'能/可以', th:'ได้', ph:'dai3'},
+    {cn:'不能/不可以', th:'ไม่ได้', ph:'mai3 dai3'},
+    {cn:'是', th:'ใช่', ph:'chai3'},
+    {cn:'不是', th:'ไม่ใช่', ph:'mai3 chai3'},
+    {cn:'瞭解/知道', th:'เข้าใจ', ph:'khao3 jai1'},
+    {cn:'不瞭解', th:'ไม่เข้าใจ', ph:'mai3 khao3 jai1'},
+    {cn:'再見', th:'เจอกันใหม่', ph:'jer:1 kan1 mai2'},
+    {cn:'很高興認識您', th:'ยินดีที่ได้รู้จัก', ph:'yin1 di:1 thi:3 dai3 ru:4 jak2'},
+  ],
+
+  greetPhrases: [
+    {cn:'歡迎來到泰國。', th:'ยินดีต้อนรับสู่ประเทศไทย ค่ะ/ครับ', ph:'yin1 di:1 tor:n3 rap4 su:2 pra2 the:t3 thai1'},
+    {cn:'您叫什麼名字？', th:'คุณชื่ออะไร คะ/ครับ', ph:'khun1 chue:3 a2 rai1 kha4'},
+    {cn:'你好，我的名字是＿。', th:'สวัสดีค่ะ ฉัน/ผม ชื่อ ____', ph:'sa2 wat2 di:1 kha3 chan5 chue:3 ____'},
+    {cn:'你來自哪個國家？', th:'คุณมาจากประเทศไหน คะ/ครับ', ph:'khun1 ma:1 ja:k2 pra2 the:t3 nai5 kha4'},
+    {cn:'我來自台灣。', th:'ฉัน/ผม มาจากไต้หวัน', ph:'chan5 ma:1 ja:k2 tai3 wan5'},
+  ],
+
+  vowels: [
+    {cn:'短 a', th:'-ะ / อะ', ph:'[a]'},
+    {cn:'長 a:', th:'-า / อา', ph:'[a:]'},
+    {cn:'短 i', th:'-ิ', ph:'[i]'},
+    {cn:'長 i:', th:'-ี', ph:'[i:]'},
+    {cn:'短 ue', th:'-ึ', ph:'[ue]'},
+    {cn:'長 ue:', th:'-ื', ph:'[ue:]'},
+    {cn:'短 u', th:'-ุ', ph:'[u]'},
+    {cn:'長 u:', th:'-ู', ph:'[u:]'},
+    {cn:'短 e', th:'เ-ะ', ph:'[e]'},
+    {cn:'長 e:', th:'เ-', ph:'[e:]'},
+    {cn:'短 ae', th:'แ-ะ', ph:'[ae]'},
+    {cn:'長 ae:', th:'แ-', ph:'[ae:]'},
+    {cn:'短 o', th:'โ-ะ', ph:'[o]'},
+    {cn:'長 o:', th:'โ-', ph:'[o:]'},
+    {cn:'短 or', th:'เ-าะ', ph:'[or]'},
+    {cn:'長 or:', th:'-อ', ph:'[or:]'},
+    {cn:'複母音 ia', th:'เ-ีย', ph:'[i:a]'},
+    {cn:'複母音 uea', th:'เ-ือ', ph:'[ue:a]'},
+    {cn:'複母音 ua', th:'-ัว', ph:'[ua:]'},
+    {cn:'am', th:'-ำ', ph:'[am]'},
+    {cn:'ao', th:'เ-า', ph:'[ao]'},
+    {cn:'ai', th:'ไ- / ใ-', ph:'[ai]'},
+  ],
+
+  midCons: [
+    {ch:'ก', sound:'k/k', ex:'ไก่ kai2'},
+    {ch:'จ', sound:'j/t', ex:'จาน ja:n1'},
+    {ch:'ด', sound:'d/t', ex:'เด็ก dek2'},
+    {ch:'ต', sound:'t/t', ex:'เต่า tao2'},
+    {ch:'บ', sound:'b/p', ex:'ใบไม้ bai1 mai4'},
+    {ch:'ป', sound:'p/p', ex:'ปลา pla:1'},
+    {ch:'อ', sound:'o/-', ex:'อ่าง a:ng2'},
+    {ch:'ฎ', sound:'d/t', ex:'ชฎา cha4 da:1'},
+    {ch:'ฏ', sound:'t/t', ex:'ปฏัก pa2 tak2'},
+  ],
+
+  highCons: [
+    {ch:'ข', sound:'kh/k', ex:'ไข่ khai2'},
+    {ch:'ฉ', sound:'ch/t', ex:'ฉิ่ง ching2'},
+    {ch:'ถ', sound:'th/t', ex:'ถุง thung5'},
+    {ch:'ผ', sound:'ph/p', ex:'ผึ้ง phueng3'},
+    {ch:'ฝ', sound:'f/p', ex:'ฝา fa:5'},
+    {ch:'ศ', sound:'s/t', ex:'ศาลา sa:5 la:1'},
+    {ch:'ษ', sound:'s/t', ex:'ฤๅษี rue:1 si:5'},
+    {ch:'ส', sound:'s/t', ex:'เสือ suea:5'},
+    {ch:'ห', sound:'h/-', ex:'หีบ hi:p2'},
+    {ch:'ฐ', sound:'th/t', ex:'ฐาน tha:n5'},
+    {ch:'ฃ', sound:'kh/k', ex:'（少用）'},
+  ],
+
+  lowCons: [
+    {ch:'ค', sound:'kh/k', ex:'ควาย kwa:i1'},
+    {ch:'ง', sound:'ng/ng', ex:'งู ngu:1'},
+    {ch:'ช', sound:'ch/t', ex:'ช้าง cha:ng4'},
+    {ch:'น', sound:'n/n', ex:'หนู nu:5'},
+    {ch:'ม', sound:'m/m', ex:'ม้า ma:4'},
+    {ch:'ย', sound:'y/i', ex:'ยักษ์ yak4'},
+    {ch:'ร', sound:'r/n', ex:'เรือ ruea:1'},
+    {ch:'ล', sound:'l/n', ex:'ลิง ling1'},
+    {ch:'ว', sound:'w/o', ex:'แหวน wae:n5'},
+    {ch:'ท', sound:'th/t', ex:'ทหาร tha4 ha:n5'},
+    {ch:'พ', sound:'ph/p', ex:'พาน pha:n1'},
+    {ch:'ฟ', sound:'f/t', ex:'ฟัน fan1'},
+  ],
+
+  tones: [
+    {num:'1', name:'สามัญ', cn:'中調（平）', ex:'กา', ph:'ka:1'},
+    {num:'2', name:'เอก', cn:'低調', ex:'ก่า', ph:'ka:2'},
+    {num:'3', name:'โท', cn:'降調', ex:'ก้า', ph:'ka:3'},
+    {num:'4', name:'ตรี', cn:'高調', ex:'ก๊า', ph:'ka:4'},
+    {num:'5', name:'จัตวา', cn:'上升調', ex:'ก๋า', ph:'ka:5'},
+  ],
+
+  finals: [
+    {cn:'字尾 k', th:'ก ข ค ฆ', ph:'[k]'},
+    {cn:'字尾 p', th:'บ ป พ ฟ ภ', ph:'[p]'},
+    {cn:'字尾 t', th:'ด ต ท ถ ธ จ ช ซ ส ศ ษ', ph:'[t]'},
+    {cn:'字尾 ng', th:'ง', ph:'[ng]'},
+    {cn:'字尾 m', th:'ม', ph:'[m]'},
+    {cn:'字尾 n', th:'น ณ ญ ร ล ฬ', ph:'[n]'},
+    {cn:'字尾 i', th:'ย', ph:'[i]'},
+    {cn:'字尾 o', th:'ว', ph:'[o]'},
+  ],
+
+  introDialogues: [
+    {
+      context:'詢問名字',
+      rows:[
+        {role:'問', cn:'您叫什麼名字？', th:'คุณชื่ออะไรครับ', ph:'khun1 chue:3 a2 rai1 khrap4'},
+        {role:'答', cn:'你好，我的名字是＿＿。', th:'สวัสดีค่ะ ฉันชื่อ ____', ph:'sa2 wat2 di:1 kha3 chan5 chue:3 ____'},
+      ]
+    },
+    {
+      context:'詢問來自哪裡',
+      rows:[
+        {role:'問', cn:'你來自哪個國家？', th:'คุณมาจากประเทศไหนคะ', ph:'khun1 ma:1 ja:k2 pra2 the:t3 nai5 kha4'},
+        {role:'答', cn:'我來自台灣。', th:'ฉันมาจากไต้หวัน', ph:'chan5 ma:1 ja:k2 tai3 wan5'},
+      ]
+    },
+    {
+      context:'詢問是否學過泰語',
+      rows:[
+        {role:'問', cn:'你學過泰語嗎？', th:'คุณเคยเรียนภาษาไทยไหม', ph:'khun1 kher:i1 ri:an1 pha:1 sa:5 thai1 mai5'},
+        {role:'答（有）', cn:'是的，我學過泰語。', th:'ใช่ ฉันเคยเรียนภาษาไทย', ph:'chai3 chan5 ker:i1 ria:n1 pha:1 sa:5 thai1'},
+        {role:'答（沒有）', cn:'沒有，我沒學過泰語。', th:'ไม่ ฉันไม่เคยเรียนภาษาไทย', ph:'mai3 chan5 mai3 ker:i1 ria:n1 pha:1 sa:5 thai1'},
+      ]
+    },
+  ],
+
+  workDialogues: [
+    {
+      context:'詢問工作',
+      rows:[
+        {role:'問', cn:'你做什麼工作？', th:'คุณทำงานอะไร', ph:'khun1 tham1 nga:n1 a2 rai1'},
+        {role:'答1', cn:'我是軟體工程師。', th:'ฉันเป็นวิศวกรซอฟต์แวร์', ph:'chan5 pen1 wit4 sa2 wa4 gorn1 soft1 ware1'},
+        {role:'答2', cn:'我在科技公司工作。', th:'ฉันทำงานที่บริษัทเทคโนโลยี', ph:'chan5 tham1 nga:n1 thi:3 bor:1 ri4 sat2'},
+      ]
+    },
+    {
+      context:'工作年資',
+      rows:[
+        {role:'問', cn:'你工作幾年了？', th:'คุณทำงานกี่ปีแล้ว', ph:'khun1 tham1 nga:n1 ki:2 pi:1 lae:o4'},
+        {role:'答', cn:'我工作了5年。', th:'ฉันทำงานมา 5 ปีแล้ว', ph:'chan5 tham1 nga:n1 ma:1 ha:3 pi:1 lae:o4'},
+      ]
+    },
+  ],
+
+  timeCards: [
+    {hr:'1', th:'ตีหนึ่ง', ph:'ti:1 nueng2'},
+    {hr:'2', th:'ตีสอง', ph:'ti:1 sor:ng5'},
+    {hr:'3', th:'ตีสาม', ph:'ti:1 sa:m5'},
+    {hr:'4', th:'ตีสี่', ph:'ti:1 si:2'},
+    {hr:'5', th:'ตีห้า', ph:'ti:1 ha:3'},
+    {hr:'6', th:'หกโมงเช้า', ph:'hok2 mo:ng1 chao4'},
+    {hr:'7', th:'เจ็ดโมงเช้า', ph:'jet2 mo:ng1 chao4'},
+    {hr:'8', th:'แปดโมงเช้า', ph:'phaet2 mo:ng1 chao4'},
+    {hr:'9', th:'เก้าโมงเช้า', ph:'kao3 mo:ng1 chao4'},
+    {hr:'10', th:'สิบโมงเช้า', ph:'sip2 mo:ng1 chao4'},
+    {hr:'11', th:'สิบเอ็ดโมงเช้า', ph:'sip2 et2 mo:ng1 chao4'},
+    {hr:'12N', th:'เที่ยงวัน', ph:'thi:ang3 wan1'},
+    {hr:'1pm', th:'บ่ายโมง', ph:'ba:i2 mo:ng1'},
+    {hr:'2pm', th:'บ่ายสองโมง', ph:'ba:i2 sor:ng5 mo:ng1'},
+    {hr:'3pm', th:'บ่ายสามโมง', ph:'ba:i2 sa:m5 mo:ng1'},
+    {hr:'5pm', th:'ห้าโมงเย็น', ph:'ha:3 mo:ng1 yen1'},
+    {hr:'7pm', th:'หนึ่งทุ่ม', ph:'nueng2 thum3'},
+    {hr:'8pm', th:'สองทุ่ม', ph:'sor:ng5 thum3'},
+    {hr:'9pm', th:'สามทุ่ม', ph:'sa:m5 thum3'},
+    {hr:'12M', th:'เที่ยงคืน', ph:'thi:ang3 khue:n1'},
+  ],
+
+  timePeriod: [
+    {cn:'早上', th:'ตอนเช้า', ph:'tor:n1 chao4'},
+    {cn:'中午', th:'กลางวัน', ph:'kla:ng1 wan1'},
+    {cn:'下午', th:'ตอนบ่าย', ph:'tor:n1 ba:i2'},
+    {cn:'傍晚', th:'ตอนเย็น', ph:'tor:n1 yen1'},
+    {cn:'晚上', th:'ตอนค่ำ', ph:'tor:n1 kham3'},
+    {cn:'現在', th:'ตอนนี้', ph:'tor:n1 ni:4'},
+  ],
+
+  weekdays: [
+    {cn:'星期一', th:'วันจันทร์', ph:'wan1 jan1'},
+    {cn:'星期二', th:'วันอังคาร', ph:'wan1 ang1 kha:n1'},
+    {cn:'星期三', th:'วันพุธ', ph:'wan1 phut4'},
+    {cn:'星期四', th:'วันพฤหัสบดี', ph:'wan1 phreu4 hat2...'},
+    {cn:'星期五', th:'วันศุกร์', ph:'wan1 suk2'},
+    {cn:'星期六', th:'วันเสาร์', ph:'wan1 sao5'},
+    {cn:'星期日', th:'วันอาทิตย์', ph:'wan1 a:1 thit4'},
+    {cn:'昨天', th:'เมื่อวาน', ph:'mue:a3 wa:n1'},
+    {cn:'今天', th:'วันนี้', ph:'wan1 ni:4'},
+    {cn:'明天', th:'พรุ่งนี้', ph:'phrung3 ni:4'},
+    {cn:'後天', th:'วันมะรืนนี้', ph:'wan1 ma4 rue:n1 ni:4'},
+    {cn:'上週', th:'อาทิตย์ที่แล้ว', ph:'a:1 thit4 thi:3 lae:o4'},
+    {cn:'這週', th:'อาทิตย์นี้', ph:'a:1 thit4 ni:4'},
+    {cn:'下週', th:'อาทิตย์หน้า', ph:'a:1 thit4 na:3'},
+  ],
+
+  months: [
+    {cn:'一月', th:'มกราคม', ph:'ma4 ka2 ra:1 khom1'},
+    {cn:'二月', th:'กุมภาพันธ์', ph:'khum1 pha:1 phan1'},
+    {cn:'三月', th:'มีนาคม', ph:'mi:1 na:1 khom1'},
+    {cn:'四月', th:'เมษายน', ph:'me:1 sa:5 yon1'},
+    {cn:'五月', th:'พฤษภาคม', ph:'phruet4 sa2 pha:1 khom1'},
+    {cn:'六月', th:'มิถุนายน', ph:'mi4 thu2 na:1 yon1'},
+    {cn:'七月', th:'กรกฎาคม', ph:'ka2 ra4 ka2 da:1 khom1'},
+    {cn:'八月', th:'สิงหาคม', ph:'sing5 ha:5 khom1'},
+    {cn:'九月', th:'กันยายน', ph:'kan1 ya:1 yon1'},
+    {cn:'十月', th:'ตุลาคม', ph:'tu2 la:1 khom1'},
+    {cn:'十一月', th:'พฤศจิกายน', ph:'phruet4 sa2 ji2 ka:1 yon1'},
+    {cn:'十二月', th:'ธันวาคม', ph:'than1 wa:1 khom1'},
+  ],
+
+  seasons: [
+    {cn:'季節', th:'ฤดูกาล', ph:'reu4 du:1 ka:n1'},
+    {cn:'春天', th:'ฤดูใบไม้ผลิ', ph:'reu4 du:1 bai1 mai4 phli2'},
+    {cn:'夏天', th:'ฤดูร้อน', ph:'reu4 du:1 ror:n4'},
+    {cn:'秋天', th:'ฤดูใบไม้ร่วง', ph:'rue4 du:1 bai1 mai4 rua:ng3'},
+    {cn:'冬天', th:'ฤดูหนาว', ph:'reu4 du:1 na:o5'},
+    {cn:'雨季', th:'ฤดูฝน', ph:'reu4 du:1 fon5'},
+    {cn:'天氣', th:'อากาศ', ph:'a:1 ka:t2'},
+    {cn:'下雨', th:'ฝนตก', ph:'fon5 tok2'},
+    {cn:'晴天', th:'อากาศสดใส', ph:'a:1 ka:t2 sot2 sai5'},
+    {cn:'溫暖', th:'อบอุ่น', ph:'op2 un2'},
+    {cn:'悶熱', th:'อบอ้าว', ph:'op2 a:o3'},
+    {cn:'冷', th:'หนาว', ph:'na:o5'},
+    {cn:'雲', th:'เมฆ', ph:'me:k3'},
+    {cn:'風', th:'ลม', ph:'lom1'},
+    {cn:'霧', th:'หมอก', ph:'mor:k2'},
+    {cn:'打雷閃電', th:'ฟ้าผ่า', ph:'fa:4 pha:2'},
+  ],
+
+  food: [
+    {cn:'涼拌青木瓜', th:'ส้มตำ', ph:'som3 tam1'},
+    {cn:'海鮮沙拉', th:'ยำทะเล', ph:'yam1 tha4 le:1'},
+    {cn:'泡麵沙拉', th:'ยำมาม่า', ph:'yam1 ma:1 ma:3'},
+    {cn:'冬蔭功', th:'ต้มยำกุ้ง', ph:'tom3 yam1 kung3'},
+    {cn:'椰奶雞湯', th:'ต้มข่าไก่', ph:'tom3 kha:2 kai2'},
+    {cn:'蛋炒飯', th:'ข้าวไข่เจียว', ph:'kha:o3 khai2 jia:o1'},
+    {cn:'海南雞飯', th:'ข้าวมันไก่', ph:'kha:o3 man1 kai2'},
+    {cn:'豬腳飯', th:'ข้าวขาหมู', ph:'kha:o3 kha:5 mu:5'},
+    {cn:'炒空心菜蝦醬', th:'ผักบุ้งผัดกะปิ', ph:'phak2 bung3 phat2 ka2 pi2'},
+    {cn:'清邁麵', th:'ข้าวซอย', ph:'kha:o3 sori1'},
+    {cn:'船麵', th:'ก๋วยเตี๋ยวเรือ', ph:'kua:i5 tia:o5 ruea:1'},
+    {cn:'豬肉丸米粉', th:'ก๋วยเตี๋ยวลูกชิ้นหมู', ph:'kua:i5 tia:o5 lu:k3 chin4 mu:5'},
+    {cn:'馬薩曼牛肉咖哩', th:'มัสมั่นเนื้อ', ph:'mat4 sa2 man3 nuea:4'},
+    {cn:'青咖哩雞', th:'แกงเขียวหวานไก่', ph:'kae:ng1 kia:o5 wa:n5 kai2'},
+  ],
+
+  restaurant: [
+    {cn:'您要點什麼？', th:'จะรับอะไรครับ', ph:'ja2 sang2 a2 rai1 khrap4'},
+    {cn:'請給我菜單。', th:'ขอเมนูหน่อยครับ', ph:'kor:5 me:1 nu:1 nor:i2 khrap4'},
+    {cn:'有素食嗎？', th:'มีอาหารมังสวิรัติไหมครับ', ph:'mi:1 a:1 ha:n5 mang1 sa2 wi4 rat4 mai5'},
+    {cn:'這個辣嗎？', th:'อันนี้เผ็ดไหมคะ', ph:'an1 ni:4 phet2 mai5 kha4'},
+    {cn:'不要放香菜。', th:'ไม่ใส่ผักชีค่ะ', ph:'mai3 sai2 phak2 chi:1 kha3'},
+    {cn:'不要放大蒜。', th:'ไม่ใส่กระเทียมค่ะ', ph:'mai3 sai2 kra2 thiam1 kha3'},
+    {cn:'不要放辣椒。', th:'ไม่ใส่พริกค่ะ', ph:'mai3 sai2 phrik4 kha3'},
+    {cn:'請推薦食物。', th:'แนะนำอาหารให้เราหน่อยได้ไหม', ph:'nae4 nam1 a:1 ha:n5 hai3 rao1 nor:i2 dai3 mai5'},
+  ],
+
+  officeItems: [
+    {cn:'辦公室', th:'สำนักงาน', ph:'sam5 nak4 nga:n1'},
+    {cn:'辦公室用品', th:'เครื่องใช้สำนักงาน', ph:'khruea:ng3 chai4 sam5 nak4 nga:n1'},
+    {cn:'電腦', th:'คอมพิวเตอร์', ph:'khorm1 phiu4 ter:1'},
+    {cn:'印表機', th:'เครื่องพิมพ์', ph:'khruea:ng3 phim1'},
+    {cn:'電話', th:'โทรศัพท์', ph:'tho:1 ra4 sap2'},
+    {cn:'辦公桌', th:'โต๊ะทำงาน', ph:'to4 tha:m1 nga:n1'},
+    {cn:'椅子', th:'เก้าอี้', ph:'kao3 i:3'},
+    {cn:'筆', th:'ปากกา', ph:'pa:k2 ka:1'},
+    {cn:'紙', th:'กระดาษ', ph:'kra2 da:t1'},
+    {cn:'檔案', th:'ไฟล์', ph:'fai1'},
+    {cn:'迴紋針', th:'คลิป', ph:'khlip4'},
+    {cn:'圖釘', th:'หมุด', ph:'mut2'},
+    {cn:'資料夾', th:'แฟ้มเอกสาร', ph:'faem4 e:k2 ka2 sa:n5'},
+    {cn:'文件櫃', th:'ตู้เก็บเอกสาร', ph:'tu:3 kep2 e:k2 ka2 sa:n5'},
+    {cn:'平板電腦', th:'แท็บเล็ต', ph:'thae:p4 lek4'},
+    {cn:'咖啡', th:'กาแฟ', ph:'ka:1 fae:1'},
+    {cn:'飲用水', th:'น้ำดื่ม', ph:'nam4 due:m2'},
+  ],
+
+  positions: [
+    {cn:'董事長', th:'ประธานบริษัท', ph:'pra4 tha:n1 bor:1 ri4 sat2'},
+    {cn:'副董事長', th:'รองประธานบริษัท', ph:'ror:ng1 pra4 tha:n1 bor:1 ri4 sat2'},
+    {cn:'董事', th:'กรรมการ', ph:'kam1 ma4 ka:n1'},
+    {cn:'總經理', th:'ผู้จัดการใหญ่', ph:'phu:3 jat2 ka:n1 yai2'},
+    {cn:'副總經理', th:'รองผู้จัดการ', ph:'ror:ng1 phu:3 jat2 ka:n1'},
+    {cn:'部門經理', th:'ผู้จัดการฝ่าย', ph:'phu:3 jat2 ka:n1 fa:i2'},
+    {cn:'組長/主任', th:'หัวหน้าแผนก', ph:'hua5 na:3 pha2 nae:k2'},
+    {cn:'秘書', th:'เลขานุการ', ph:'le:1 kha:5 nu4 ka:n1'},
+    {cn:'員工', th:'พนักงาน', ph:'pha4 nak4 nga:n1'},
+  ],
+
+  departments: [
+    {cn:'業務部', th:'ฝ่ายขาย', ph:'fa:i2 kha:i5'},
+    {cn:'人事部', th:'ฝ่ายบุคคล', ph:'fa:i2 buk2 khon1'},
+    {cn:'會計部', th:'ฝ่ายบัญชี', ph:'fa:i2 ban1 chi:1'},
+    {cn:'採購部', th:'ฝ่ายจัดซื้อ', ph:'fa:i2 jat2 sue:4'},
+    {cn:'技術部', th:'ฝ่ายเทคนิค', ph:'fa:i2 the:k1 nik4'},
+    {cn:'工廠部門', th:'ฝ่ายโรงงาน', ph:'fa:i2 ror:ng1 nga:n1'},
+    {cn:'財務部', th:'ฝ่ายการเงิน', ph:'fa:i2 ka:n1 nger:n1'},
+    {cn:'企劃部', th:'ฝ่ายวางแผน', ph:'fa:i2 wa:ng1 phae:n5'},
+    {cn:'生產部', th:'ฝ่ายการผลิต', ph:'fa:i2 ka:n1 pha2 lit2'},
+    {cn:'行銷部', th:'ฝ่ายการตลาด', ph:'fa:i2 ka:n1 ta2 la:t2'},
+    {cn:'保險部', th:'ฝ่ายประกันภัย', ph:'fa:i2 pra2 kan1 phai1'},
+    {cn:'進口部', th:'ฝ่ายการนำเข้า', ph:'fa:i2 ka:n1 nam1 khao3'},
+    {cn:'出口部', th:'ฝ่ายการส่งออก', ph:'fa:i2 ka:n1 song2 or:k2'},
+    {cn:'客服部', th:'ฝ่ายบริการลูกค้า', ph:'fa:i2 bor:1 ri4 ka:n1 lu:k3 kha:4'},
+    {cn:'公關部', th:'ฝ่ายประชาสัมพันธ์', ph:'fa:i2 pra2 cha:1 sam5 phan1'},
+    {cn:'人力資源部', th:'ฝ่ายทรัพยากรบุคคล', ph:'fa:i2 sap4 pha4 ya:1 kor:n1 buk2 khon1'},
+    {cn:'品管部', th:'ฝ่ายควบคุมคุณภาพ', ph:'fa:i2 khu:ap3 khum1 khun1 na4 pha:p3'},
+    {cn:'研發部', th:'ฝ่ายงานวิจัยและพัฒนา', ph:'fa:i2 nga:n1 wi4 jai1 lae4 phat4 tha4 na:1'},
+  ],
+
+  bizVocab: [
+    {cn:'商業', th:'ธุรกิจ', ph:'thu4 ra4 kit2'},
+    {cn:'買方', th:'ผู้ซื้อ', ph:'phu:3 sue:4'},
+    {cn:'製造商', th:'ผู้ผลิต', ph:'phu:3 pha2 lit2'},
+    {cn:'品質', th:'คุณภาพ', ph:'khun1 na4 pha:p3'},
+    {cn:'預算', th:'งบประมาณ', ph:'ngop4 pra2 ma:n1'},
+    {cn:'專利', th:'สิทธิบัตร', ph:'sit2 thi4 bat2'},
+    {cn:'商標', th:'เครื่องหมายการค้า', ph:'khrue:ang3 ma:i5 ka:n1 kha:4'},
+    {cn:'許可證', th:'ใบอนุญาต', ph:'bai1 a2 nu4 ya:t3'},
+    {cn:'工業', th:'อุตสาหกรรม', ph:'ut2 sa:5 ha2 kam1'},
+    {cn:'展覽會', th:'งานแสดงสินค้า', ph:'nga:n1 sa2 dae:ng1 sin5 kha:4'},
+    {cn:'海外市場', th:'ตลาดต่างประเทศ', ph:'ta2 la:t2 ta:ng2 pra2 the:t3'},
+    {cn:'國內市場', th:'ตลาดในประเทศ', ph:'ta2 la:t2 nai1 pra2 the:t3'},
+    {cn:'進出口貿易', th:'การค้านำเข้าและส่งออก', ph:'ka:n1 kha:4 nam1 khao3 lae4 song2 or:k2'},
+    {cn:'國際貿易', th:'การค้าระหว่างประเทศ', ph:'ka:n1 kha:4 ra4 wa:ng2 pra2 the:t3'},
+  ],
+
+  bizDialogues: [
+    {
+      context:'會議安排',
+      rows:[
+        {role:'問', cn:'你什麼時候開會？', th:'คุณมีประชุมเมื่อไหร่', ph:'khun1 mi:1 pra2 chum1 muea:3 rai2'},
+        {role:'答1', cn:'我的會議在10點。', th:'ประชุมของฉันอยู่ในเวลา 10:00 นาฬิกา', ph:'pra2 chum1 kor:ng5 chan5 yu2 nai1 we:1 la:1 10:00'},
+        {role:'答2', cn:'我下午三點開會。', th:'ฉันมีประชุมตอนบ่ายสาม', ph:'chan5 mi1 pra2 chum1 tor:n ba:i2 sa:m5'},
+      ]
+    },
+    {
+      context:'請求協助',
+      rows:[
+        {role:'問', cn:'你能幫我處理這份文件嗎？', th:'คุณสามารถช่วยฉันด้วยเอกสารนี้ได้ไหม', ph:'khun1 sa:5 ma:t3 chua:i3 chan5 dua:i3 e:k ka2 sa:n5 ni:4 dai3 mai5'},
+        {role:'答（好）', cn:'好的，我今天會完成。', th:'ได้ ฉันจะทำมันให้เสร็จสิ้นในวันนี้', ph:'dai3 chan5 ja2 tham1 man1 hai3 set2 sin3 nai1 wan1 ni:4'},
+        {role:'答（不行）', cn:'抱歉，我有其他工作要做。', th:'ขอโทษนะ ฉันต้องทำงานอื่นอยู่', ph:'kor5 thort3 na4 chan5 torng3 tham1 nga:n1 ue:n2 yu:2'},
+      ]
+    },
+    {
+      context:'工作進度',
+      rows:[
+        {role:'問', cn:'你工作完了嗎？', th:'คุณเสร็จงานแล้วหรือยัง', ph:'khun1 set2 nga:n1 lae:o4 rue:5 yang1'},
+        {role:'答（完了）', cn:'是的，我完成了。', th:'ใช่ ฉันเสร็จแล้ว', ph:'chai3 chan5 set2 lae:o4'},
+        {role:'答（還沒）', cn:'還沒，我還在做。', th:'ยัง ฉันทำอยู่', ph:'yang1 chan5 tham1 yu2'},
+      ]
+    },
+    {
+      context:'招待客人',
+      rows:[
+        {role:'問', cn:'您需要咖啡嗎？', th:'คุณต้องการกาแฟหรือเปล่า', ph:'khun1 tor:ng3 kan1 ka:1 fae:1 rue:5 plao2'},
+        {role:'答（要）', cn:'是的，謝謝。', th:'ใช่ ขอบคุณมาก', ph:'chai3 kor:b2 khun1 ma:k3'},
+        {role:'答（不用）', cn:'不用了謝謝，我不喝咖啡。', th:'เปล่า ขอบคุณ ฉันไม่ดื่มกาแฟ', ph:'plao2 kor:b2 khun1 chan5 mai3 due:m2 ka:1 fae:1'},
+      ]
+    },
+  ],
+
+  phonePhrases: [
+    {cn:'請問可以和林先生/小姐說話嗎？', th:'สวัสดีครับ ขอพูดกับคุณหลินไหม', ph:'sa2 wat2 di:1 khrap4 khor:5 phu:t3 kap2 khun1 lin5 mai5'},
+    {cn:'聽不清楚，可以再說一次嗎？', th:'ฟังไม่ชัด กรุณาพูดอีกครั้งได้ไหม', ph:'fang1 mai3 chat4 ka2 ru4 na:1 phu:t3 i:k2 khrang4 dai3 mai5'},
+    {cn:'請稍等一下。', th:'รอสักครู่นะครับ', ph:'ror:1 sak2 khru:3 na4 khrap4'},
+    {cn:'請讓他/她回電。', th:'ช่วยให้เขาโทรกลับด้วย', ph:'chua:i3 hai3 khao5 tho:1 klap2 dua:i3'},
+  ],
+};
+
+// ── TTS ENGINE ────────────────────────────────────────
+const tts = {
+  synth: window.speechSynthesis,
+  voice: null,
+  barTimer: null,
+  currentEl: null,
+
+  init() {
+    const load = () => {
+      const voices = this.synth.getVoices();
+      // prefer th-TH voice, fallback to any Thai voice
+      this.voice = voices.find(v => v.lang === 'th-TH')
+                || voices.find(v => v.lang.startsWith('th'))
+                || null;
+      if (!this.voice) {
+        const warn = document.getElementById('no-tts-warn');
+        if (warn) warn.style.display = 'block';
+      }
+    };
+    load();
+    if (this.synth.onvoiceschanged !== undefined) {
+      this.synth.onvoiceschanged = load;
+    }
+    // Bind global click handler
+    document.addEventListener('click', e => {
+      const card = e.target.closest('.speakable');
+      if (!card) return;
+      const text = card.dataset.speak;
+      if (text) this.speak(text, card);
+    });
+  },
+
+  speak(text, el) {
+    this.synth.cancel();
+    if (this.currentEl) this.currentEl.classList.remove('speaking');
+
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'th-TH';
+    utt.rate = 0.85;
+    utt.pitch = 1;
+    if (this.voice) utt.voice = this.voice;
+
+    this.currentEl = el;
+    el.classList.add('speaking');
+
+    // show bar
+    const bar = document.getElementById('tts-bar');
+    const barText = document.getElementById('tts-text');
+    barText.textContent = text;
+    bar.classList.add('visible');
+    clearTimeout(this.barTimer);
+
+    utt.onend = utt.onerror = () => {
+      el.classList.remove('speaking');
+      this.currentEl = null;
+      this.barTimer = setTimeout(() => bar.classList.remove('visible'), 800);
+    };
+
+    this.synth.speak(utt);
+  }
+};
+
+// Strip HTML tags to get plain Thai text
+function stripHtml(html) {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  return d.textContent || d.innerText || '';
+}
+
+// ── RENDER ──────────────────────────────────────────
+function vc(id, items) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = items.map(v => `
+    <div class="vocab-card speakable" data-speak="${stripHtml(v.th)}">
+      <div class="cn">${v.cn}</div>
+      <div class="th">${v.th}</div>
+      <div class="ph">${v.ph}</div>
+    </div>`).join('');
+}
+
+function pc(id, items) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = items.map(v => `
+    <div class="phrase-card speakable" data-speak="${stripHtml(v.th)}">
+      <div class="cn">${v.cn}</div>
+      <div class="th">${v.th}</div>
+      <div class="ph">${v.ph}</div>
+    </div>`).join('');
+}
+
+function dc(id, dialogues) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = dialogues.map(d => `
+    <div class="dialogue-block">
+      <div class="context">${d.context}</div>
+      ${d.rows.map(r => `
+        <div class="dialogue-row speakable" data-speak="${r.th}">
+          <div class="role">${r.role}</div>
+          <div class="speech">
+            <div class="cn-line">${r.cn}</div>
+            <div class="th-line">${r.th}</div>
+            <div class="ph-line">${r.ph}</div>
+          </div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+// Countries
+document.getElementById('countries').innerHTML = data.countries.map(c => `
+  <div class="country-card speakable" data-speak="${stripHtml(c.th)}">
+    <div class="cn">${c.cn}</div>
+    <div class="th">${c.th}</div>
+    <div class="ph">${c.ph}</div>
+  </div>`).join('');
+
+vc('greet-vocab', data.greetVocab);
+pc('greet-phrases', data.greetPhrases);
+vc('vowels', data.vowels);
+
+// Consonants
+['mid-cons','high-cons','low-cons'].forEach((id, i) => {
+  const arr = [data.midCons, data.highCons, data.lowCons][i];
+  document.getElementById(id).innerHTML = arr.map(c => `
+    <div class="consonant-card speakable" data-speak="${c.ch}">
+      <div class="th-char">${c.ch}</div>
+      <div class="info">
+        <div class="sound">${c.sound}</div>
+        <div class="example">${c.ex}</div>
+      </div>
+    </div>`).join('');
+});
+
+// Tones
+document.getElementById('tones').innerHTML = data.tones.map(t => `
+  <div class="tone-card speakable" data-speak="${t.ex}">
+    <div class="tone-num">${t.num}</div>
+    <div class="tone-name-th">${t.name}</div>
+    <div class="tone-name-cn">${t.cn}</div>
+    <div class="tone-ex">${t.ex}</div>
+    <div class="tone-ex-ph">${t.ph}</div>
+  </div>`).join('');
+
+vc('finals', data.finals);
+
+dc('intro-dialogues', data.introDialogues);
+dc('work-dialogues', data.workDialogues);
+
+// Time cards
+document.getElementById('time-cards').innerHTML = data.timeCards.map(t => `
+  <div class="time-card speakable" data-speak="${t.th}">
+    <div class="hr">${t.hr}</div>
+    <div class="info">
+      <div class="th">${t.th}</div>
+      <div class="ph">${t.ph}</div>
+    </div>
+  </div>`).join('');
+
+vc('time-period', data.timePeriod);
+vc('weekdays', data.weekdays);
+vc('months', data.months);
+vc('seasons', data.seasons);
+vc('food', data.food);
+pc('restaurant', data.restaurant);
+vc('office-items', data.officeItems);
+vc('positions', data.positions);
+vc('departments', data.departments);
+vc('biz-vocab', data.bizVocab);
+dc('biz-dialogues', data.bizDialogues);
+pc('phone-phrases', data.phonePhrases);
+
+// Also make number table rows speakable
+document.querySelectorAll('.num-table tbody tr').forEach(row => {
+  const thCell = row.querySelector('.th-word');
+  if (thCell) {
+    row.classList.add('speakable');
+    row.style.cursor = 'pointer';
+    row.dataset.speak = thCell.textContent.trim();
+  }
+});
+
+// Init TTS after render
+tts.init();
+
+// ── TABS ──────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
